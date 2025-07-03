@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveStatus }) => {
       let timeoutId: NodeJS.Timeout;
 
       const handleSectionVisibility = () => {
-        const sections = ["home", "skills", "Summer Internship", "projects", "contact"];
+        const sections = ["home", "skills", "Summer Internship", "projects", "Hobbies", "contact"];
         const scrollPosition = window.scrollY + window.innerHeight / 2;
 
         let newActiveSection = activeSection;
@@ -100,6 +100,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveStatus }) => {
     { id: "skills", label: "Skills" },
     { id: "Summer Internship", label: "Summer Internship" },
     { id: "projects", label: "Projects" },
+    { id: "Hobbies", label: "Hobbies" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -218,13 +219,14 @@ const Home = () => {
       title: "Brick Well – A Hybrid Construction Platform for Residential Projects",
       description:
         "Developed a hybrid construction business model, Brick Well focused on residential projects, integrating in- house design with contractor execution.Developed a company-centric revenuemodel with tiered platform fees,contractor successfees, and advertising revenue streams. Created a prototype app using Figma,demonstrating the platform’s user interface and core functionality.",
+      tech: ["Figma", "Excel", "Business Model Canvas"],
     }, 
     
     {
       title: "Portfolio Optimization",
       description:
-        "Optimized the Portfolio of 10 company's stocks using Excel solver.",
-      
+        "Conducted multi-stock return analysis by calculating individual and portfolio returns using historical price data. Developed Minimum Variance Portfolio (MVP) to identify the optimal asset allocation that minimizes risk.Constructed Maximum Return Portfolio considering constraints, maximizing return under acceptable risk thresholds. Utilized Excel functions, matrix operations, and data visualization techniques to support investment decision-making.",
+      tech: ["Excel", "Solver Tool"],
     },
     
   ];
@@ -268,6 +270,12 @@ const Home = () => {
       description: "Requirements Gathering, Process Mapping, Stakeholder Management",
     },
   ];
+  const Hobbies = [
+    {title: "Playing Piano", description:"Enjoys playing the piano, exploring various musical genres and compositions."},
+    {title: "Reading Spiritual Books", description:"Passionate about reading spiritual books, seeking wisdom and personal growth."},
+    {title: "Reading Business Newspapers", description:"Stays updated with the latest business news and trends through regular reading."},
+    {title: "Investing in Stocks", description:"Actively invests in stocks, applying analytical skills to make informed decisions."},
+  ];  
 
   const handleDownloadResume = () => {
     // Replace with your resume download link
@@ -385,7 +393,7 @@ const Home = () => {
               Technical Skills
             </h2>
             <p className='text-zinc-400 text-lg max-w-2xl mx-auto'>
-              Integration of technical skills and business acumen to drivr  value
+              Integration of technical skills and business acumen to drive value
         
             </p>
           </motion.div>
@@ -408,6 +416,47 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* Summer Internship Section */}
+      <section
+  id="Summer Internship"
+  className="min-h-[60vh] flex items-center py-20 px-4 md:px-6"
+>
+  <div className="max-w-7xl mx-auto w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+        Summer Internship
+      </h2>
+      <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+        Industry exposure and practical learning from real-world projects.
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {SummerInternship.map((intern, index) => (
+        <motion.div
+          key={intern.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          viewport={{ once: true }}
+        >
+          <ProjectCard
+            title={intern.title}
+            description={intern.description}
+            tech={[]}
+          />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Projects Section */}
       <section
@@ -449,6 +498,48 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
+      {/* Hobbies Section */}
+      <section 
+       id="Hobbies"
+  className="min-h-[60vh] flex items-center py-20 px-4 md:px-6"
+>
+  <div className="max-w-7xl mx-auto w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+        My Hobbies
+      </h2>
+      <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+        Exploring passions beyond work to stay inspired and balanced.
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {Hobbies.map((hobby, index) => (
+        <motion.div
+          key={hobby.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          viewport={{ once: true }}
+        >
+          <ProjectCard
+            title={hobby.title}
+            description={hobby.description}
+            tech={[]}
+          />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Contact Section */}
       <section
@@ -477,8 +568,8 @@ const Home = () => {
               },
               {
                 icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
-                text: "+91-8978374829",
-                href: "tel:8978374829",
+                text: "+91-9515899972",
+                href: "tel:+919515899972",
               },
               {
                 icon: "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
