@@ -10,7 +10,6 @@ import {
 import { ProjectCard, SkillCard } from "@/components/ui/project-cards";
 import profilePic from "@/app/assets/Image_Portfolio.jpg";
 import Image from "next/image";
-import { title } from "process";
 
 interface HeaderProps {
   activeSection: string;
